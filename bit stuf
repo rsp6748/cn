@@ -1,0 +1,14 @@
+data=list(input("ënter the data:" ))
+i=0
+count=0
+while i<len(data):
+    if (data[i]=='1'):
+        count=count+1
+        if (count==5):
+            data.insert(i, '0')
+            i=i+1
+            count=0
+    else:
+        count=0
+    i=i+1
+print(data)
