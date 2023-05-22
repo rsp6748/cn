@@ -1,0 +1,40 @@
+import time
+class bucket:
+    def init(self, capacity, fill_rate):
+        self.capacity = float(capacity)
+        self.available_tokens = 0
+        self.fill_rate = float(fill_rate)
+        self.timestamp = float(time.time()) 
+        print(f"Created a token bucket with \nMaximum capacity: {self.capacity} tokens \nFill rate: {self.fill_rate} tokens/sec")
+    def consume_tokens(self, tokens):
+        self.fill_tokens()
+        if tokens <= self.available_tokens:
+            print("available_tokens = ", int(self.available_tokens))
+            self.available_tokens = self.available_tokens - tokens
+            print("Consumed tokens = ", tokens)
+            print("Remaining tokens = ", int(self.available_tokens))
+        else:
+            print(f"Tokens available are insufficient(Available tokens = {int(self.available_tokens)})")
+
+        
+    def fill_tokens(self):
+        now = time.time()
+        self.available_tokens = self.available_tokens + self.fill_rate * (now - self.timestamp)
+        self.available_tokens = min(self.available_tokens, self.capacity)
+        self.timestamp = time.time()
+
+if name == 'main':
+    print("Creating Token bucket")
+    token_bucket = bucket(80, 5)
+    time.sleep(5)
+    print("---------------------------------------------------------------")
+    print("Consuming 15 tokens")
+    print("---------------------------------------------------------------")
+    token_bucket.consume_tokens(15)
+    print("")
+
+    print("---------------------------------------------------------------")
+    print("Consuming 30 tokens")
+    print("---------------------------------------------------------------")
+    token_bucket.consume_tokens(30)
+    print("---------------------------------------------------------------")
