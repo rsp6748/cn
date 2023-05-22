@@ -1,0 +1,10 @@
+data=list(input("ënter the data:" ))
+i=0
+while i<len(data):
+    if (data[i]=='f'or data[i]=='e'):
+        data.insert(i,'e')
+        i=i+1
+    i=i+1
+data.insert(0,'f')
+data.insert(len(data),'f')
+print(data)
